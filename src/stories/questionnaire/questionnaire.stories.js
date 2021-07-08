@@ -5,6 +5,7 @@ import { titleDecorator } from 'utils/lib';
 import calcVar from './calc-var';
 import logement from './logement';
 import simpsons from './simpsons';
+import arithmetic from './arithmetic';
 import { positioningOptions, featuresOptions } from '../utils/options';
 import { boolean, select } from '@storybook/addon-knobs/react';
 
@@ -19,6 +20,7 @@ def.addWithJSX('Calculated Variables', () => (
 	<Orchestrator
 		id="props"
 		source={calcVar}
+		missing={boolean('Missing', false)}
 		features={select('Features', featuresOptions, ['VTL', 'MD'])}
 		positioning={select('Items positioning', positioningOptions, 'DEFAULT')}
 		disabled={boolean('Disabled', false)}
@@ -31,6 +33,7 @@ def.addWithJSX('Logement', () => (
 	<Orchestrator
 		id="props"
 		source={logement}
+		missing={boolean('Missing', false)}
 		features={select('Features', featuresOptions, ['VTL', 'MD'])}
 		positioning={select('Items positioning', positioningOptions, 'DEFAULT')}
 		disabled={boolean('Disabled', false)}
@@ -39,10 +42,21 @@ def.addWithJSX('Logement', () => (
 	/>
 ));
 
+def.addWithJSX('Arithmetic', () => (
+	<Orchestrator
+		id="props"
+		source={arithmetic}
+		features={select('Features', featuresOptions, ['VTL', 'MD'])}
+		positioning={select('Items positioning', positioningOptions, 'DEFAULT')}
+		disabled={boolean('Disabled', false)}
+	/>
+));
+
 def.addWithJSX('Simpsons', () => (
 	<Orchestrator
 		id="props"
 		source={simpsons}
+		missing={boolean('Missing', false)}
 		features={select('Features', featuresOptions, ['VTL', 'MD'])}
 		positioning={select('Items positioning', positioningOptions, 'DEFAULT')}
 		disabled={boolean('Disabled', false)}
@@ -62,6 +76,7 @@ paginated.addWithJSX('Calculated Variables', () => (
 	<Orchestrator
 		id="props"
 		source={calcVar}
+		missing={boolean('Missing', false)}
 		features={select('Features', featuresOptions, ['VTL', 'MD'])}
 		positioning={select('Items positioning', positioningOptions, 'DEFAULT')}
 		disabled={boolean('Disabled', false)}
@@ -75,6 +90,8 @@ paginated.addWithJSX('Logement', () => (
 	<Orchestrator
 		id="props"
 		source={logement}
+		missing={boolean('Missing', false)}
+		activeGoNextForMissing={boolean('Active go next for missing', false)}
 		features={select('Features', featuresOptions, ['VTL', 'MD'])}
 		positioning={select('Items positioning', positioningOptions, 'DEFAULT')}
 		disabled={boolean('Disabled', false)}
@@ -88,6 +105,8 @@ paginated.addWithJSX('Simpsons', () => (
 	<Orchestrator
 		id="props"
 		source={simpsons}
+		missing={boolean('Missing', false)}
+		activeGoNextForMissing={boolean('Active go next for missing', false)}
 		features={select('Features', featuresOptions, ['VTL', 'MD'])}
 		positioning={select('Items positioning', positioningOptions, 'DEFAULT')}
 		disabled={boolean('Disabled', false)}
